@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
+import { ThemeProvider } from 'styled-components';
+import theme from './components/globalStyles/Theme';
+import { GlobalStyles } from './components/globalStyles/Global.styled';
+import Jumbotron from './components/Jumbotron/Jumbotron';
+import About from './components/About/About';
+import Work from './components/Work/Work';
+import Members from './components/Members/Members';
+import Contact from './components/Contact/Contact';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Header />
+      <Jumbotron />
+      <About />
+      <Work />
+      <Members />
+      <Contact />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
