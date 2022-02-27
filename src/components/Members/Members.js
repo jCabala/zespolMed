@@ -1,11 +1,10 @@
 import { Section, Divider, Wave, Gap } from '../globalStyles/Global.styled';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { MyButton } from '../globalStyles/Global.styled';
+
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';

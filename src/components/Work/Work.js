@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Section, Divider, Wave, Gap } from '../globalStyles/Global.styled';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';

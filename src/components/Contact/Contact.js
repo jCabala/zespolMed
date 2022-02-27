@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Section, Divider, Wave, Gap } from '../globalStyles/Global.styled';
+import { Section, Divider, Gap } from '../globalStyles/Global.styled';
 import { Box, Typography } from '@mui/material';
 import { HiMusicNote, HiOutlineMail, HiPhone } from 'react-icons/hi';
 import { Form, Input, Textarea, Submit, ContactData } from './Contact.styled';

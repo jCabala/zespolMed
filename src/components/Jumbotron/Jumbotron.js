@@ -3,8 +3,6 @@ import { JumboContainer, JumboContent } from './Jumbotron.styled';
 import { Wave, MyButton } from '../globalStyles/Global.styled';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-const images = ['band1.jpg', 'band2.jpg', 'band3.jpg'];
-
 const Jumbotron = () => {
   return (
     <JumboContainer>
