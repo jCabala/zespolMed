@@ -7,9 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import { MyButton } from '../globalStyles/Global.styled';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { MyPagination } from './Work.styled';
+import { Pagination } from '@mui/material';
 
-const NUM_PER_PAGE = 8;
+const NUM_PER_PAGE = 4;
 
 const videos = [
   {
@@ -120,9 +120,8 @@ const Work = () => {
             </Card>
           ))}
       </Box>
-
-      <MyPagination
-        size='large'
+      <Pagination
+        sx={{ color: 'white' }}
         page={page}
         onChange={(e, v) => setPage(v)}
         count={Math.ceil(videos.length / NUM_PER_PAGE)}

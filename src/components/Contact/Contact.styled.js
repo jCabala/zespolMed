@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  width: 100%;
+  max-width: 700px;
   fieldset {
     border: 2px solid white;
     padding: 10px;
@@ -25,8 +27,8 @@ export const Input = styled.input`
   border: none;
   border-radius: 12px;
   height: 40px;
-  width: 40vw;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 16px;
 `;
@@ -36,13 +38,13 @@ export const Textarea = styled.textarea`
   border-radius: 12px;
   font-size: 16px;
   height: 100px;
-  width: 40vw;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 10px;
 `;
 
 export const Submit = styled.button`
-  width: 40vw;
+  width: 100%;
   height: 50px;
   border: 2px solid white;
   border-radius: 12px;

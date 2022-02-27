@@ -10,10 +10,11 @@ const Jumbotron = () => {
         <h1>
           Zespół <span>MED</span>
         </h1>
-
-        <MyButton>
-          Więcej o Nas <br /> <IoMdArrowDropdown />
-        </MyButton>
+        <a href='#O_Nas'>
+          <MyButton onClick={() => console.log(2)}>
+            Więcej o Nas <br /> <IoMdArrowDropdown />
+          </MyButton>
+        </a>
       </JumboContent>
       <Wave src='./images/wave1.svg' alt='' />{' '}
     </JumboContainer>
