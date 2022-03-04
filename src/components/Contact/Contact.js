@@ -1,9 +1,42 @@
 import { Section, Divider, Gap } from '../globalStyles/Global.styled';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { useState, useRef, useEffect } from 'react';
 import { HiMusicNote, HiOutlineMail, HiPhone } from 'react-icons/hi';
 import { Form, Input, Textarea, Submit, ContactData } from './Contact.styled';
+import emailjs from 'emailjs-com';
 
-const Work = () => {
+const Conntact = () => {
+  const [send, setSend] = useState(false);
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (send === true) {
+      setTimeout(() => {
+        setSend(false);
+      }, 2000);
+    }
+  }, [send]);
+
+  const handleSumbit = async e => {
+    e.preventDefault();
+
+    try {
+      const res = await emailjs.sendForm(
+        'service_tnt9rmb',
+        'template_zawbroa',
+        formRef.current,
+        'user_XuX8KdjO5cQkAVLdudOWo'
+      );
+
+      console.log(res.text);
+    } catch (err) {
+      console.log(err.message);
+    }
+
+    e.target.reset();
+    setSend(true);
+  };
+
   return (
     <Section>
       <h1>Kontakt</h1>
@@ -25,13 +58,24 @@ const Work = () => {
           {'       '}zespolmed@gmail.com
         </ContactData>
       </Box>
-      <Form action=''>
+      <Form ref={formRef} onSubmit={handleSumbit}>
         <fieldset>
-          <legend>Wyślij nam wiadomość</legend>
-          <Input placeholder='Email...' />
+          {send ? (
+            <></>
+          ) : (
+            <>
+              <legend>Wyślij nam wiadomość</legend>
+              <Input
+                placeholder='Email...'
+                type='email'
+                name='from_name'
+                required
+              />
 
-          <Textarea placeholder='Wiadomość...' />
-          <Submit type='submit'> Wyślij</Submit>
+              <Textarea placeholder='Wiadomość...' name='message' required />
+              <Submit type='submit'> Wyślij</Submit>
+            </>
+          )}
         </fieldset>
       </Form>
 
@@ -40,4 +84,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Conntact;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const JumboContainer = styled.div`
-  position: relative;
   min-height: 100vh;
   width: 100%;
   background-image: url('./images/piano.jpg');
@@ -9,8 +8,11 @@ export const JumboContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  position: relative;
 `;
 
 export const JumboContent = styled.div`
@@ -30,10 +32,5 @@ export const JumboContent = styled.div`
 
   span {
     color: ${({ theme }) => theme.colors.primary};
-  }
-
-  p {
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: 500;
   }
 `;

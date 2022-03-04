@@ -1,16 +1,43 @@
-import {
-  Section,
-  Divider,
-  Img,
-  Wave,
-  Gap,
-} from '../globalStyles/Global.styled';
+import { Section, Divider, Img } from '../globalStyles/Global.styled';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import Wave from '../globalStyles/Wave';
+import { useFetch } from 'react-async';
+import { URL } from '../../api.config';
+import { useEffect, useState } from 'react';
+import qs from 'qs';
+
+const query = qs.stringify(
+  {
+    populate: '*',
+  },
+  {
+    encodeValuesOnly: true,
+  }
+);
 
 const About = () => {
+  const { data } = useFetch(`${URL}/api/about?${query}`, {
+    headers: { accept: 'application/json' },
+  });
+  const [desc, setDesc] = useState({ short: '', long: '' });
+  const [photos, setPhotos] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      const newData = data.data.attributes;
+      console.log(data);
+      setDesc({
+        short: newData.opis,
+        long: newData.rozszerzony,
+      });
+
+      setPhotos(newData.zdjecia.data.map(e => ({ img: e.attributes.url })));
+    }
+  }, [data]);
+
   return (
     <Section color>
       <Box
@@ -28,12 +55,11 @@ const About = () => {
           display={{ xs: 'none', md: 'block' }}
         >
           <ImageList variant='masonry' cols={3} gap={8}>
-            {itemData.map((item, idx) => (
-              <ImageListItem key={item.img}>
+            {photos.map((item, idx) => (
+              <ImageListItem key={`about_img-${idx}`}>
                 <img
-                  key={`about_img-${idx}`}
-                  src={`${item.img}`}
-                  srcSet={`${item.img}?`}
+                  src={`${URL}${item.img}`}
+                  srcSet={`${URL}${item.img}?`}
                   alt=''
                   loading='lazy'
                 />
@@ -54,21 +80,13 @@ const About = () => {
             mb={{ xs: 10, md: 0 }}
             ml={{ xs: 'auto', md: 10 }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            tristique elit magna, vitae ornare tellus placerat non. Nunc a
-            tortor arcu.
+            {desc.short}
           </Typography>
           <Typography
             sx={{ maxWidth: 500, marginLeft: 10 }}
             display={{ xs: 'none', md: 'block' }}
           >
-            Curabitur non est ac tortor auctor congue ut eget dolor. Curabitur
-            nec ante id urna fringilla tincidunt ac in enim. Duis vestibulum
-            neque ac dui molestie dapibus. Vestibulum feugiat magna enim, sit
-            amet tristique nisl cursus ut. Aliquam at venenatis ex, sit amet
-            egestas ipsum. Aenean volutpat odio tempus nulla euismod
-            consectetur. Quisque vel tortor pellentesque, faucibus sem eu,
-            vehicula urna.
+            {desc.long}
           </Typography>
         </div>
 
@@ -84,31 +102,9 @@ const About = () => {
           <Img src='./images/band2.jpg' />
         </Box>
       </Box>
-      <Gap />
-      <Wave src='./images/wave2.svg' alt='' />{' '}
+      <Wave colored />
     </Section>
   );
 };
-
-const itemData = [
-  {
-    img: './images/band1.jpg',
-  },
-  { img: './images/notes.jpg' },
-  {
-    img: './images/band2.jpg',
-  },
-  {
-    img: './images/band3.jpg',
-  },
-  {
-    img: './images/band4.jpg',
-  },
-  {
-    img: './images/band5.jpg',
-  },
-  { img: './images/wedding1.jpg' },
-  { img: './images/mamczyk1.jpg' },
-];
 
 export default About;

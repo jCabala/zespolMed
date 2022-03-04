@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Section, Divider, Wave, Gap } from '../globalStyles/Global.styled';
+import { useState, useEffect } from 'react';
+import { Section, Divider } from '../globalStyles/Global.styled';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,80 +8,30 @@ import { MyButton } from '../globalStyles/Global.styled';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Pagination } from '@mui/material';
-
+import Wave from '../globalStyles/Wave';
+import { useFetch } from 'react-async';
+import { URL } from '../../api.config';
 const NUM_PER_PAGE = 4;
-
-const videos = [
-  {
-    title: 'Być Bliżej Ciebie Chcę',
-    link: 'https://www.youtube.com/watch?v=v2hSHr3Yn0U',
-    comp: 'https://www.youtube.com/embed/v2hSHr3Yn0U',
-  },
-  {
-    title: 'Karczma Pod Reglami',
-    link: 'https://www.youtube.com/watch?v=sKPCd0p1o2w',
-    comp: 'https://www.youtube.com/embed/sKPCd0p1o2w',
-  },
-  {
-    title: 'Bo Ja Cie Kochom',
-    link: 'https://www.youtube.com/watch?v=8R7NWRh2YeY',
-    comp: 'https://www.youtube.com/embed/8R7NWRh2YeY',
-  },
-  {
-    title: 'Być Bliżej Ciebie Chcę',
-    link: 'https://www.youtube.com/watch?v=v2hSHr3Yn0U',
-    comp: 'https://www.youtube.com/embed/v2hSHr3Yn0U',
-  },
-  {
-    title: 'Karczma Pod Reglami',
-    link: 'https://www.youtube.com/watch?v=sKPCd0p1o2w',
-    comp: 'https://www.youtube.com/embed/sKPCd0p1o2w',
-  },
-  {
-    title: 'Bo Ja Cie Kochom',
-    link: 'https://www.youtube.com/watch?v=8R7NWRh2YeY',
-    comp: 'https://www.youtube.com/embed/8R7NWRh2YeY',
-  },
-  {
-    title: 'Być Bliżej Ciebie Chcę',
-    link: 'https://www.youtube.com/watch?v=v2hSHr3Yn0U',
-    comp: 'https://www.youtube.com/embed/v2hSHr3Yn0U',
-  },
-  {
-    title: 'Karczma Pod Reglami',
-    link: 'https://www.youtube.com/watch?v=sKPCd0p1o2w',
-    comp: 'https://www.youtube.com/embed/sKPCd0p1o2w',
-  },
-  {
-    title: 'Bo Ja Cie Kochom',
-    link: 'https://www.youtube.com/watch?v=8R7NWRh2YeY',
-    comp: 'https://www.youtube.com/embed/8R7NWRh2YeY',
-  },
-  {
-    title: 'Być Bliżej Ciebie Chcę',
-    link: 'https://www.youtube.com/watch?v=v2hSHr3Yn0U',
-    comp: 'https://www.youtube.com/embed/v2hSHr3Yn0U',
-  },
-  {
-    title: 'Karczma Pod Reglami',
-    link: 'https://www.youtube.com/watch?v=sKPCd0p1o2w',
-    comp: 'https://www.youtube.com/embed/sKPCd0p1o2w',
-  },
-  {
-    title: 'Bo Ja Cie Kochom',
-    link: 'https://www.youtube.com/watch?v=8R7NWRh2YeY',
-    comp: 'https://www.youtube.com/embed/8R7NWRh2YeY',
-  },
-];
 
 const Work = () => {
   const [page, setPage] = useState(1);
+  const [videos, setVideos] = useState([]);
+  const { data } = useFetch(`${URL}/api/videos`, {
+    headers: { accept: 'application/json' },
+  });
+
+  useEffect(() => {
+    if (data) {
+      setVideos(data.data.map(e => e.attributes));
+    }
+  }, [data]);
+
+  console.log(videos);
 
   return (
     <Section>
       <h1>Nasza Twórczość</h1>
       <Divider />
-
       <Box
         style={{
           display: 'flex',
@@ -97,6 +47,15 @@ const Work = () => {
               sx={{
                 width: 300,
                 margin: 10,
+                borderRadius: 6,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px',
+                transition: 'all 1s ease-out',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+
+                border: '1px solid white',
               }}
               key={`work_card-${idx}`}
             >
@@ -105,11 +64,17 @@ const Work = () => {
                 component='iframe'
                 alt=''
                 height='200'
-                src={vid.comp}
+                src={vid.iframe}
+                sx={{
+                  width: 300,
+                  position: 'relative',
+                  right: 5,
+                  bottom: 3,
+                }}
               />
               <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
-                  {vid.title}
+                  {vid.name}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -121,13 +86,18 @@ const Work = () => {
           ))}
       </Box>
       <Pagination
-        sx={{ color: 'white' }}
+        sx={{
+          '& .MuiPaginationItem-root': {
+            color: '#fff',
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+          },
+        }}
         page={page}
         onChange={(e, v) => setPage(v)}
         count={Math.ceil(videos.length / NUM_PER_PAGE)}
       />
-      <Gap />
-      <Wave src='./images/wave1.svg' />
+      <Wave />
     </Section>
   );
 };

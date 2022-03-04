@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const Form = styled.form`
   width: 100%;
   max-width: 700px;
+
   fieldset {
+    height: 410px;
     border: 2px solid white;
     padding: 10px;
     display: flex;
@@ -35,9 +37,10 @@ export const Input = styled.input`
 
 export const Textarea = styled.textarea`
   border: none;
+  resize: none;
   border-radius: 12px;
   font-size: 16px;
-  height: 100px;
+  height: 200px;
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;

@@ -31,12 +31,6 @@ export const Img = styled.img`
   }
 `;
 
-export const Wave = styled.img`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-`;
-
 export const MyButton = styled.div`
   padding: 10px;
   cursor: pointer;
@@ -44,6 +38,8 @@ export const MyButton = styled.div`
 
   height: 50px;
   width: 200px;
+
+  transition: all 0.5s ease-in;
 
   border: 2px solid ${({ theme }) => theme.colors.primary};
   border-radius: 20px;
@@ -88,4 +84,11 @@ export const Divider = styled.div`
 
 export const Gap = styled.div`
   height: 150px;
+`;
+
+export const StyledWaveContainer = styled.div`
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -5px;
 `;

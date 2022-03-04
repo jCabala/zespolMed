@@ -1,4 +1,4 @@
-import { Section, Divider, Wave, Gap } from '../globalStyles/Global.styled';
+import { Section, Divider } from '../globalStyles/Global.styled';
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
@@ -8,19 +8,40 @@ import Typography from '@mui/material/Typography';
 
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import Wave from '../globalStyles/Wave';
+import { URL } from '../../api.config';
+import { useFetch } from 'react-async';
+import qs from 'qs';
+import { useState, useEffect } from 'react';
 
-const members = [
+const query = qs.stringify(
   {
-    name: 'Dawid Olchawa',
-    img: './images/dawid1.jpg',
+    populate: '*',
   },
   {
-    name: 'Jakub Mamczyk',
-    img: './images/mamczyk1.jpg',
-  },
-];
+    encodeValuesOnly: true,
+  }
+);
 
 const Members = () => {
+  const [members, setMembers] = useState([]);
+  const { data } = useFetch(`${URL}/api/members?${query}`, {
+    headers: { accept: 'application/json' },
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.data);
+
+      const mapped = data.data.map(e => ({
+        name: e.attributes.name,
+        img: e.attributes.photo.data.attributes.url,
+      }));
+
+      setMembers(mapped);
+    }
+  }, [data]);
+
   return (
     <Section color>
       <h1>Członkowie</h1>
@@ -44,7 +65,7 @@ const Members = () => {
               component='img'
               alt=''
               height='80%'
-              src={mem.img}
+              src={`${URL}${mem.img}`}
             />
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
@@ -54,8 +75,7 @@ const Members = () => {
           </Card>
         ))}
       />
-      <Gap />
-      <Wave src='./images/wave2.svg' />
+      <Wave colored />
     </Section>
   );
 };
