@@ -20,18 +20,18 @@ const Conntact = () => {
   const handleSumbit = async e => {
     e.preventDefault();
 
-    try {
-      const res = await emailjs.sendForm(
-        'service_tnt9rmb',
-        'template_zawbroa',
-        formRef.current,
-        'user_XuX8KdjO5cQkAVLdudOWo'
-      );
+    // try {
+    //   const res = await emailjs.sendForm(
+    //     'service_tnt9rmb',
+    //     'template_zawbroa',
+    //     formRef.current,
+    //     'user_XuX8KdjO5cQkAVLdudOWo'
+    //   );
 
-      console.log(res.text);
-    } catch (err) {
-      console.log(err.message);
-    }
+    //   console.log(res.text);
+    // } catch (err) {
+    //   console.log(err.message);
+    // }
 
     e.target.reset();
     setSend(true);
@@ -61,7 +61,9 @@ const Conntact = () => {
       <Form ref={formRef} onSubmit={handleSumbit}>
         <fieldset>
           {send ? (
-            <></>
+            <>
+              <HiMusicNote size='10rem' color='white' />
+            </>
           ) : (
             <>
               <legend>Wyślij nam wiadomość</legend>
