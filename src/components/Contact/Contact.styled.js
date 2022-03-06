@@ -59,7 +59,11 @@ export const Submit = styled.button`
   cursor: pointer;
 
   &:hover {
-    opacity: 0.8;
+    color: ${({ theme }) => theme.colors.primary};
+
+    background-color: white;
+
+    transition: all 0.5s ease-in;
   }
 `;
 
@@ -78,4 +82,9 @@ export const ContactData = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin: 10px;
+  transition: all 0.5s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
