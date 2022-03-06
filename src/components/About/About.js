@@ -28,6 +28,7 @@ const About = () => {
   useEffect(() => {
     if (data) {
       const newData = data.data.attributes;
+      console.log(data);
       setDesc({
         short: newData.opis,
         long: newData.rozszerzony,
@@ -74,6 +75,7 @@ const About = () => {
           <Typography
             sx={{
               width: '100%',
+              padding: 10,
             }}
             maxWidth={{ xs: 500, md: 300 }}
             mb={{ xs: 10, md: 0 }}
@@ -82,7 +84,7 @@ const About = () => {
             {desc.short}
           </Typography>
           <Typography
-            sx={{ maxWidth: 500, marginLeft: 10 }}
+            sx={{ maxWidth: 500, marginLeft: 10, padding: 10 }}
             display={{ xs: 'none', md: 'block' }}
           >
             {desc.long}

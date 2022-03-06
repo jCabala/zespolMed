@@ -30,7 +30,10 @@ const Header = () => {
               },
             }}
           >
-            {['Twórczość', 'Kontakt'].map(page => (
+            {[
+              ['Twórczość', 'work'],
+              ['Kontakt', 'contact'],
+            ].map(page => (
               <a href={'#' + page[1]}>
                 <Button
                   key={page[0]}
