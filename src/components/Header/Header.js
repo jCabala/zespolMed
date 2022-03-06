@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
@@ -8,19 +7,14 @@ import Button from '@mui/material/Button';
 
 import { Logo, Navbar } from './Header.styled';
 
-const pages = ['O Nas', 'Twórczość', 'Członkowie', 'Kontakt'];
+const pages = [
+  ['O Nas', 'about'],
+  ['Twórczość', 'work'],
+  ['Członkowie', 'members'],
+  ['Kontakt', 'contact'],
+];
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-
-  const handleOpenNavMenu = event => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
     <Navbar position='fixed'>
       <Container maxWidth='xl'>
@@ -37,13 +31,14 @@ const Header = () => {
             }}
           >
             {['Twórczość', 'Kontakt'].map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <a href={'#' + page[1]}>
+                <Button
+                  key={page[0]}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page[0]}
+                </Button>
+              </a>
             ))}
           </Box>
 
@@ -57,13 +52,14 @@ const Header = () => {
             }}
           >
             {pages.map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <a href={'#' + page[1]}>
+                <Button
+                  key={page[1]}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page[0]}
+                </Button>
+              </a>
             ))}
           </Box>
         </Toolbar>

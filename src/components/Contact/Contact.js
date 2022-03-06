@@ -38,7 +38,7 @@ const Conntact = () => {
   };
 
   return (
-    <Section>
+    <Section id='contact'>
       <h1>Kontakt</h1>
       <Divider />
       <Box

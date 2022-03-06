@@ -31,8 +31,6 @@ const Members = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data);
-
       const mapped = data.data.map(e => ({
         name: e.attributes.name,
         img: e.attributes.photo.data.attributes.url,
@@ -43,7 +41,7 @@ const Members = () => {
   }, [data]);
 
   return (
-    <Section color>
+    <Section color id='members'>
       <h1>Członkowie</h1>
       <Divider color />
 

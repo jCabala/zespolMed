@@ -26,10 +26,8 @@ const Work = () => {
     }
   }, [data]);
 
-  console.log(videos);
-
   return (
-    <Section>
+    <Section id='work'>
       <h1>Nasza Twórczość</h1>
       <Divider />
       <Box

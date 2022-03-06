@@ -28,7 +28,6 @@ const About = () => {
   useEffect(() => {
     if (data) {
       const newData = data.data.attributes;
-      console.log(data);
       setDesc({
         short: newData.opis,
         long: newData.rozszerzony,
@@ -39,7 +38,7 @@ const About = () => {
   }, [data]);
 
   return (
-    <Section color>
+    <Section color id='about'>
       <Box
         sx={{
           justifyContent: 'center',
