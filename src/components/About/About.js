@@ -77,8 +77,8 @@ const About = () => {
               width: '100%',
               paddingLeft: 5,
               paddingRight: 5,
+              maxWidth: 500,
             }}
-            maxWidth={{ xs: 500, md: 300 }}
             mb={{ xs: 10, md: 0 }}
             ml={{ xs: 'auto', md: 10 }}
           >
