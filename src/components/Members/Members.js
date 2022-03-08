@@ -9,37 +9,10 @@ import Typography from '@mui/material/Typography';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import Wave from '../globalStyles/Wave';
-import { URL } from '../../api.config';
-import { useFetch } from 'react-async';
-import qs from 'qs';
-import { useState, useEffect } from 'react';
-
-const query = qs.stringify(
-  {
-    populate: '*',
-  },
-  {
-    encodeValuesOnly: true,
-  }
-);
+import { useState } from 'react';
+import { members } from './membersList';
 
 const Members = () => {
-  const [members, setMembers] = useState([]);
-  const { data } = useFetch(`${URL}/api/members?${query}`, {
-    headers: { accept: 'application/json' },
-  });
-
-  useEffect(() => {
-    if (data) {
-      const mapped = data.data.map(e => ({
-        name: e.attributes.name,
-        img: e.attributes.photo.data.attributes.url,
-      }));
-
-      setMembers(mapped);
-    }
-  }, [data]);
-
   return (
     <Section color id='members'>
       <h1>Członkowie</h1>
@@ -63,7 +36,7 @@ const Members = () => {
               component='img'
               alt=''
               height='80%'
-              src={`${URL}${mem.img}`}
+              src={`./images/members/${mem.img}`}
             />
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>

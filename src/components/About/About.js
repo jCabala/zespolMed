@@ -18,12 +18,20 @@ const query = qs.stringify(
   }
 );
 
+const photos = [
+  'band1.jpg',
+  'band2.jpg',
+  'band3.jpg',
+
+  'band4.jpg',
+  'band5.jpg',
+];
+
 const About = () => {
   const { data } = useFetch(`${URL}/api/about?${query}`, {
     headers: { accept: 'application/json' },
   });
   const [desc, setDesc] = useState({ short: '', long: '' });
-  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -33,8 +41,6 @@ const About = () => {
         short: newData.opis,
         long: newData.rozszerzony,
       });
-
-      setPhotos(newData.zdjecia.data.map(e => ({ img: e.attributes.url })));
     }
   }, [data]);
 
@@ -57,12 +63,7 @@ const About = () => {
           <ImageList variant='masonry' cols={3} gap={8}>
             {photos.map((item, idx) => (
               <ImageListItem key={`about_img-${idx}`}>
-                <img
-                  src={`${URL}${item.img}`}
-                  srcSet={`${URL}${item.img}?`}
-                  alt=''
-                  loading='lazy'
-                />
+                <img src={`./images/${item}`} alt='' loading='lazy' />
               </ImageListItem>
             ))}
           </ImageList>
