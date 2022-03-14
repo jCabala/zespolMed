@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const JumboContainer = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-image: url('./images/piano.jpg');
+  background-image: url('./images/piano.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

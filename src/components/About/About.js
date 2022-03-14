@@ -4,46 +4,17 @@ import { Typography } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Wave from '../globalStyles/Wave';
-import { useFetch } from 'react-async';
-import { URL } from '../../api.config';
-import { useEffect, useState } from 'react';
-import qs from 'qs';
-
-const query = qs.stringify(
-  {
-    populate: '*',
-  },
-  {
-    encodeValuesOnly: true,
-  }
-);
 
 const photos = [
-  'band1.jpg',
-  'band2.jpg',
-  'band3.jpg',
-
-  'band4.jpg',
-  'band5.jpg',
+  'band1.webp',
+  'band2.webp',
+  'band3.webp',
+  'wedding1.webp',
+  'band4.webp',
+  'band5.webp',
 ];
 
 const About = () => {
-  const { data } = useFetch(`${URL}/api/about?${query}`, {
-    headers: { accept: 'application/json' },
-  });
-  const [desc, setDesc] = useState({ short: '', long: '' });
-
-  useEffect(() => {
-    if (data) {
-      const newData = data.data.attributes;
-      console.log(data);
-      setDesc({
-        short: newData.opis,
-        long: newData.rozszerzony,
-      });
-    }
-  }, [data]);
-
   return (
     <Section color id='about'>
       <Box
@@ -83,7 +54,16 @@ const About = () => {
             mb={{ xs: 10, md: 0 }}
             ml={{ xs: 'auto', md: 10 }}
           >
-            {desc.short}
+            Zajmujemy się oprawą: <br /> - ślubów, <br /> - drogi weselnej,
+            <br /> - wesel, <br /> - bankietów,
+            <br /> - studniówek,
+            <br /> - imprez okolicznościowych.
+            <br />
+            <br />
+            Jesteśmy sześcioosobowym zespołem muzycznym, któremu nieobce są
+            najróżniejsze gatunki muzyczne – zaczynając od disco polo i muzyki
+            biesiadnej, kończąc na piosenkach góralskich, czy zagranicznych
+            hitach. <br />
           </Typography>
           <Typography
             sx={{
@@ -94,7 +74,15 @@ const About = () => {
             }}
             display={{ xs: 'none', md: 'block' }}
           >
-            {desc.long}
+            Naszym priorytetem jest zagwarantowanie gościom niezapomnianej
+            zabawy poprzez różnorodność muzyczną, wokalną oraz instrumentalną, a
+            także zaangażowanie ich do wspólnego śpiewania piosenek regionalnych
+            „przy stołach”. Muzyką urozmaicamy także uroczystości ślubów w stylu
+            góralskim klub klasycznym – wedle upodobania. <br /> <br />
+            Dysponujemy własnym profesjonalnym nagłośnieniem. <br />
+            Wokale: dwa damskie oraz trzy męskie. <br /> Instrumentarium:
+            skrzypce, trąbka, saksofon, akordeon, pianino, keyboard, gitara
+            elektryczna, gitara basowa.
           </Typography>
         </div>
 
@@ -106,8 +94,8 @@ const About = () => {
             alignItems: 'center',
           }}
         >
-          <Img src='./images/band1.jpg' />
-          <Img src='./images/band2.jpg' />
+          <Img src='./images/band1.webp' />
+          <Img src='./images/band2.webp' />
         </Box>
       </Box>
       <Wave colored />

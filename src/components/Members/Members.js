@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import Wave from '../globalStyles/Wave';
-import { useState } from 'react';
+
 import { members } from './membersList';
 
 const Members = () => {

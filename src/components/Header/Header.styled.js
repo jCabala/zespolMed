@@ -7,7 +7,7 @@ export const Navbar = styled(AppBar)`
 `;
 
 export const Logo = styled.div`
-  background-image: url('./images/logo.jpg');
+  background-image: url('./images/logo.webp');
   background-position: center;
   background-size: cover;
   height: 50px;
