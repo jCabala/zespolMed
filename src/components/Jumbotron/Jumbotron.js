@@ -11,7 +11,7 @@ const Jumbotron = () => {
         <h1>
           Zespół <span>MED</span>
         </h1>
-        <a href='#O_Nas'>
+        <a href='#about'>
           <MyButton onClick={() => console.log(2)}>
             Więcej o Nas <br /> <IoMdArrowDropdown />
           </MyButton>
